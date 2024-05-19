@@ -1,6 +1,17 @@
+html.light {
+    --color-bg: #fff;
+    --color-text: #000;
+}
+
+html.dark {
+    --color-bg: #222;
+    --color-text: #fff;
+}
+
 body {
-    display: flex;
-    flex-direction: column;
+    background-color: var(--color-bg);
+    color: var(--color-text);
+    transition: 0.3s;
 }
 
 * {
@@ -11,59 +22,86 @@ body {
 }
 
 .container {
-    width: 50%;
+    max-width: 800px;
+    margin: 0 auto;
     min-width: 340px;
-    max-width: 500px;
-    display: flex;
-    flex-direction: column;
-    align-self: center;
     margin-top: 20px;
+    padding: 0 20px;
 }
 
-.header {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
+.header {}
+
+.theme {
+    margin: 0 auto;
+    width: fit-content;
 }
 
-.name {
-    height: fit-content;
-    display: flex;
-    flex-wrap: wrap;
-    align-content: center;
+.switch-button {
+    display: block;
+    height: 100px;
+    width: 200px;
+    background-color: #bbb;
+    border-radius: 9999px;
+    transition: 0.2s;
+}
 
-    list-style: none;
-    background: rgb(200, 255, 150);
-    border: 4px solid rgba(35, 165, 90);
-    border-radius: 10px;
+.switch-button::before {
+    position: absolute;
+    content: '';
+    background-color: var(--color-bg);
+    height: 90px;
+    width: 90px;
+    border-radius: 9999px;
+    margin: 5px;
+    transition: 0.2s;
+}
 
-    padding: 5px;
-    text-wrap: nowrap;
-    font-size: 40px;
+#theme-toggle:checked+.switch-button {
+    background-color: #42b;
+}
+
+#theme-toggle:checked+.switch-button::before {
+    transform: translateX(100px);
+    background-color: var(--color-bg);
 }
 
 
 
 
 
-
-
-
-
-
-
-
-.social {
+.business-card {
+    max-width: 500px;
+    min-width: 360px;
     font-size: 30px;
 }
 
-.social li {
+.business-card li {
     height: 100px;
     display: flex;
     align-items: center;
     justify-content: space-between;
-    margin-bottom: 20px;
+}
+
+.business-card li:not(:first-child) {
+    margin-top: 20px;
+}
+
+.name {
+    background: rgb(221, 255, 189);
+    border: 4px solid rgba(35, 165, 90);
+    border-radius: 10px;
+
+    color: rgb(9, 135, 61);
+    padding: 5px;
+    text-wrap: nowrap;
+    font-size: 37px;
+}
+
+
+
+.qrcode {
+    height: 100%;
+    aspect-ratio: 1 / 1;
 }
 
 .qrcode-link {
@@ -74,12 +112,6 @@ body {
     height: 100%;
 }
 
-.qrcode {
-    height: 100%;
-    aspect-ratio: 1 / 1;
-}
-
-
 
 .qrcode-modal {
     position: fixed;
@@ -89,5 +121,5 @@ body {
     bottom: 0;
     justify-content: center;
     align-items: center;
-    background-color: rgba(0, 0, 0, 0.9);
+    transition: 0.4s;
 }
