@@ -25,44 +25,52 @@ body {
     max-width: 800px;
     margin: 0 auto;
     min-width: 340px;
-    margin-top: 20px;
-    padding: 0 20px;
+    padding-top: 20px;
 }
 
-.header {}
+header {}
 
 .theme {
     margin: 0 auto;
     width: fit-content;
 }
 
-.switch-button {
-    display: block;
-    height: 100px;
-    width: 200px;
-    background-color: #bbb;
-    border-radius: 9999px;
-    transition: 0.2s;
-}
+:root {}
 
-.switch-button::before {
-    position: absolute;
-    content: '';
-    background-color: var(--color-bg);
-    height: 90px;
-    width: 90px;
-    border-radius: 9999px;
-    margin: 5px;
-    transition: 0.2s;
-}
 
-#theme-toggle:checked+.switch-button {
-    background-color: #42b;
-}
+#theme-toggle {
+    +label {
+        --switch-checkbox-height: 100px;
 
-#theme-toggle:checked+.switch-button::before {
-    transform: translateX(100px);
-    background-color: var(--color-bg);
+        display: block;
+        height: var(--switch-checkbox-height);
+        width: calc(var(--switch-checkbox-height) * 2);
+        background-color: #bbb;
+        border-radius: 9999px;
+        transition: 0.2s;
+
+        &::before {
+            position: absolute;
+            height: calc(var(--switch-checkbox-height) * 0.9);
+            width: calc(var(--switch-checkbox-height) * 0.9);
+            margin: calc(var(--switch-checkbox-height) * 0.05);
+            content: '';
+            background-color: var(--color-bg);
+            border-radius: 9999px;
+            transition: 0.2s;
+        }
+    }
+
+    &:checked {
+        +label {
+            background-color: #42b;
+
+            &::before {
+                transform: translateX(var(--switch-checkbox-height));
+                background-color: var(--color-bg);
+            }
+        }
+    }
 }
 
 
@@ -73,6 +81,12 @@ body {
     max-width: 500px;
     min-width: 360px;
     font-size: 30px;
+
+}
+
+.business-card img {
+    user-select: none;
+    pointer-events: none;
 }
 
 .business-card li {
@@ -108,17 +122,14 @@ body {
     display: none;
 }
 
-.social-icon {
+.app-icon {
     height: 100%;
 }
 
 
 .qrcode-modal {
     position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
+    inset: 0;
     justify-content: center;
     align-items: center;
     transition: 0.4s;

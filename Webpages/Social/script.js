@@ -12,7 +12,7 @@ function change_theme() {
 
 // set dark theme if it's late
 const hours = new Date().getHours()
-if (hours < 4 || hours > 18) {
+if (hours <= 4 || hours >= 21) {
     theme_toggle.checked = true
     change_theme()
 }
@@ -30,7 +30,7 @@ qrcode.forEach(qr => {
     qr.src = `https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=${link.textContent}`
     qr.onclick = () => show_qrcode_popup(qr.src)
 
-    const icon = qr.parentNode.querySelector('.social-icon')
+    const icon = qr.parentNode.querySelector('.app-icon')
     if (icon == null) return
     // icon.onclick = () => window.location.href = link.textContent
     icon.onclick = () => window.open(link.textContent, '_blank');
