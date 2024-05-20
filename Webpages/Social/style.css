@@ -23,9 +23,9 @@ body {
 
 .container {
     max-width: 800px;
+    min-width: 220px;
     margin: 0 auto;
-    min-width: 340px;
-    padding-top: 20px;
+    padding: 20px 20px 0 20px;
 }
 
 header {}
@@ -79,9 +79,7 @@ header {}
 
 .business-card {
     max-width: 500px;
-    min-width: 360px;
-    font-size: 30px;
-
+    font-size: 35px;
 }
 
 .business-card img {
@@ -108,7 +106,7 @@ header {}
     color: rgb(9, 135, 61);
     padding: 5px;
     text-wrap: nowrap;
-    font-size: 37px;
+    font-size: 45px;
 }
 
 
@@ -133,4 +131,67 @@ header {}
     justify-content: center;
     align-items: center;
     transition: 0.4s;
+}
+
+
+@media (max-width: 450px) {
+    .container {
+        padding: 20px 0 10px 10px;
+    }
+    .business-card {
+        font-size: 30px;
+    }
+    .name{
+        font-size: 40px;
+    }
+}
+
+
+@media (max-width: 400px) {
+    .container {
+        padding: 20px 0 0 0;
+    }
+    .business-card {
+        font-size: 25px;
+    }
+    .business-card li {
+        height: 80px;
+    }
+}
+
+
+@media (max-width: 350px) {
+    .business-card {
+        font-size: 20px;
+    }
+    .business-card li {
+        height: 70px;
+    }
+    .name{
+        font-size: 33px;
+    }
+}
+
+@media (max-width: 300px) {
+    .business-card {
+        font-size: 20px;
+    }
+    .business-card li {
+        height: 60px;
+    }
+    .name{
+        font-size: 28px;
+    }
+}
+
+@media (max-width: 250px) {
+    .business-card {
+        font-size: 16px;
+    }
+    .business-card li {
+        height: 60px;
+    }
+    .name{
+        font-size: 23px;
+    }
 }
