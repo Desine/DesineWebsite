@@ -84,7 +84,6 @@ header {}
 
 .business-card img {
     user-select: none;
-    pointer-events: none;
 }
 
 .business-card li {
