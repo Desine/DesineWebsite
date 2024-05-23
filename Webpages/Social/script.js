@@ -12,7 +12,7 @@ function change_theme() {
 
 // set dark theme if it's late
 const hours = new Date().getHours()
-if (hours <= 4 || hours >= 21) {
+if (hours <= 3 || hours >= 21) {
     theme_toggle.checked = true
     change_theme()
 }
@@ -20,39 +20,63 @@ if (hours <= 4 || hours >= 21) {
 
 
 
-// generate qr code and set link
-const qrcode = document.querySelectorAll('.qrcode')
+// generate apps
 
-qrcode.forEach(qr => {
-    const link = qr.parentNode.querySelector('.qrcode-link')
-    if (link == null) return
+// icons: https://www.flaticon.com/
+const apps = [
+    { name: 'vk', nickname: 'desinev', link: 'https://vk.com/desinev', icon: 'https://cdn-icons-png.flaticon.com/512/5968/5968835.png' },
+    { name: 'telegram', nickname: 'DesineV', link: 'https://t.me/DesineV', icon: 'https://cdn-icons-png.flaticon.com/512/2111/2111646.png' },
+    { name: 'discord', nickname: 'desine_', link: 'https://discord.gg/5dhcH8xQRB', icon: 'https://cdn-icons-png.flaticon.com/512/5968/5968756.png' },
+    { name: 'youtube', nickname: 'desine_', link: 'https://www.youtube.com/@desine_', icon: 'https://cdn-icons-png.flaticon.com/512/1384/1384060.png' },
+    { name: 'steam', nickname: 'Desine', link: 'https://steamcommunity.com/profiles/76561198355622108/', icon: 'https://cdn-icons-png.flaticon.com/512/15466/15466225.png' },
+    { name: 'github', nickname: 'Desine', link: 'https://github.com/Desine', icon: 'https://cdn-icons-png.flaticon.com/512/5968/5968896.png' }
+];
 
-    qr.src = `https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=${link.textContent}`
-    qr.onclick = () => show_qrcode_popup(qr.src)
 
-    const icon = qr.parentNode.querySelector('.app-icon')
-    if (icon == null) return
-    // icon.onclick = () => window.location.href = link.textContent
-    icon.onclick = () => window.open(link.textContent, '_blank');
+
+const business_card_ul = document.querySelector('.business-card ul')
+
+apps.forEach(app => {
+    const icon = document.createElement('img')
+    icon.alt = 'app-icon'
+    icon.src = app.icon
+    icon.onclick = () => window.open(app.link, '_blank')
+
+    const nickname = document.createElement('p')
+    nickname.innerHTML = app.nickname
+
+    const qrcode = document.createElement('img')
+    setQrcode(qrcode, app.link)
+
+    const li = document.createElement('li')
+    li.appendChild(icon)
+    li.appendChild(nickname)
+    li.appendChild(qrcode)
+    business_card_ul.appendChild(li)
 });
 
-const popup_qrcode = document.querySelector('.qrcode-modal')
-
-function show_qrcode_popup(src) {
-    const img = popup_qrcode.querySelector('img')
-    img.src = src
-    popup_qrcode.style.display = 'flex'
-
-    let size = Math.min(window.innerHeight, window.innerWidth)
-    size = Math.min(size, 300)
-    img.height = size
-    img.width = size
-
-    popup_qrcode.style.backgroundColor = 'rgba(0, 0, 0, 0.95)'
+function setQrcode(img, src) {
+    img.alt = 'QR-code'
+    img.src = `https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=${src}`
+    img.onclick = () => show_qrcode_popup(img.src)
 }
+
+setQrcode(document.querySelector('.name').nextElementSibling, window.location.href)
+
+
+// qrcode modal
+const popup_qrcode = document.querySelector('.qrcode-modal')
 
 popup_qrcode.onclick = () => {
     popup_qrcode.style.display = 'none'
     popup_qrcode.style.backgroundColor = 'rgba(0, 0, 0, 0)'
 }
+
+function show_qrcode_popup(src) {
+    popup_qrcode.children[0].src = src
+    popup_qrcode.style = ''
+
+    popup_qrcode.style.backgroundColor = 'rgba(0, 0, 0, 0.95)'
+}
+
 

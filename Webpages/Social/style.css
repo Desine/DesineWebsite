@@ -80,22 +80,22 @@ header {}
 .business-card {
     max-width: 500px;
     font-size: 35px;
-}
+ 
+    li {
+        height: 100px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
 
-.business-card img {
-    user-select: none;
-    pointer-events: none;
-}
+        &:not(:first-child) {
+            margin-top: 20px;
+        }
 
-.business-card li {
-    height: 100px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-}
-
-.business-card li:not(:first-child) {
-    margin-top: 20px;
+        img {
+            user-select: none;
+            height: 100%;
+        }
+    }
 }
 
 .name {
@@ -111,35 +111,29 @@ header {}
 
 
 
-.qrcode {
-    height: 100%;
-    aspect-ratio: 1 / 1;
-}
-
-.qrcode-link {
-    display: none;
-}
-
-.app-icon {
-    height: 100%;
-}
-
-
 .qrcode-modal {
+    display: flex;
     position: fixed;
-    inset: 0;
+    inset: -100px;
     justify-content: center;
     align-items: center;
     transition: 0.4s;
+
+    img{
+        width: 300px;
+        max-width: 100%;
+        object-fit: contain;
+    }
 }
+
 
 
 @media (max-width: 450px) {
     .business-card {
         font-size: 30px;
-    }
-    .business-card li {
-        height: 90px;
+        li {
+            height: 90px;
+        }
     }
     .name{
         font-size: 40px;
@@ -150,12 +144,12 @@ header {}
 @media (max-width: 400px) {
     .business-card {
         font-size: 25px;
-    }
-    .business-card li {
-        height: 80px;
+        li {
+            height: 80px;
+        }
     }
     .name{
-        font-size: 34px;
+        font-size: 32px;
     }
 }
 
@@ -163,9 +157,9 @@ header {}
 @media (max-width: 350px) {
     .business-card {
         font-size: 20px;
-    }
-    .business-card li {
-        height: 70px;
+        li {
+            height: 70px;
+        }
     }
     .name{
         font-size: 26px;
@@ -175,9 +169,9 @@ header {}
 @media (max-width: 300px) {
     .business-card {
         font-size: 20px;
-    }
-    .business-card li {
-        height: 60px;
+        li {
+            height: 60px;
+        }
     }
     .name{
         font-size: 20px;
@@ -187,9 +181,9 @@ header {}
 @media (max-width: 250px) {
     .business-card {
         font-size: 16px;
-    }
-    .business-card li {
-        height: 50px;
+        li {
+            height: 50px;
+        }
     }
     .name{
         font-size: 20px;
