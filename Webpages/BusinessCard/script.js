@@ -2,6 +2,11 @@
 const theme_toggle = document.getElementById('theme-toggle')
 theme_toggle.addEventListener('change', () => {
     change_theme()
+    theme_toggle.classList.remove('themeChange-input')
+    theme_toggle.nextElementSibling.classList.remove('themeChange-label')
+    void theme_toggle.parentNode.offsetWidth // Принудительная перерисовка, чтобы обновить анимацию
+    theme_toggle.classList.add('themeChange-input');
+    theme_toggle.nextElementSibling.classList.add('themeChange-label')
 })
 
 function change_theme() {
@@ -53,7 +58,16 @@ apps.forEach(app => {
     li.appendChild(nickname)
     li.appendChild(qrcode)
     business_card_ul.appendChild(li)
+
+    setTimeout(() => {
+        li.classList.add('arrive')
+    }, (apps.indexOf(app) + 2) * 100)
 });
+
+setTimeout(() => {
+    document.querySelector('.name').parentNode.classList.add('arrive')
+}, 100)
+
 
 function setQrcode(img, src) {
     img.alt = 'QR-code'
