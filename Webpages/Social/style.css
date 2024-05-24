@@ -1,3 +1,7 @@
+
+:root {}
+
+
 html.light {
     --color-bg: #fff;
     --color-text: #000;
@@ -35,25 +39,23 @@ header {}
     width: fit-content;
 }
 
-:root {}
-
 
 #theme-toggle {
     +label {
-        --switch-checkbox-height: 100px;
+        --height: clamp(50px, 20vw, 100px);
 
         display: block;
-        height: var(--switch-checkbox-height);
-        width: calc(var(--switch-checkbox-height) * 2);
+        height: var(--height);
+        width: calc(var(--height) * 2);
         background-color: #bbb;
         border-radius: 9999px;
         transition: 0.2s;
 
-        &::before {
+        &:before {
             position: absolute;
-            height: calc(var(--switch-checkbox-height) * 0.9);
-            width: calc(var(--switch-checkbox-height) * 0.9);
-            margin: calc(var(--switch-checkbox-height) * 0.05);
+            height: calc(var(--height) * 0.9);
+            width: calc(var(--height) * 0.9);
+            margin: calc(var(--height) * 0.05);
             content: '';
             background-color: var(--color-bg);
             border-radius: 9999px;
@@ -65,8 +67,8 @@ header {}
         +label {
             background-color: #42b;
 
-            &::before {
-                transform: translateX(var(--switch-checkbox-height));
+            &:before {
+                transform: translateX(var(--height));
                 background-color: var(--color-bg);
             }
         }
@@ -78,17 +80,17 @@ header {}
 
 
 .business-card {
-    max-width: 500px;
-    font-size: 35px;
+    width: clamp(200px, 80vw, 500px);
+    font-size: clamp(20px, 8vw, 40px);
  
     li {
-        height: 100px;
+        height: clamp(50px, 20vw, 100px);
         display: flex;
         align-items: center;
         justify-content: space-between;
 
         &:not(:first-child) {
-            margin-top: 20px;
+            margin-top: clamp(10px, 2vw, 20px);
         }
 
         img {
@@ -106,7 +108,7 @@ header {}
     color: rgb(9, 135, 61);
     padding: 5px;
     text-wrap: nowrap;
-    font-size: 45px;
+    font-size: clamp(20px, 8vw, 50px);
 }
 
 
@@ -120,72 +122,9 @@ header {}
     transition: 0.4s;
 
     img{
-        width: 300px;
-        max-width: 100%;
-        object-fit: contain;
+        width: min(400px, 100vw);
     }
 }
 
 
 
-@media (max-width: 450px) {
-    .business-card {
-        font-size: 30px;
-        li {
-            height: 90px;
-        }
-    }
-    .name{
-        font-size: 40px;
-    }
-}
-
-
-@media (max-width: 400px) {
-    .business-card {
-        font-size: 25px;
-        li {
-            height: 80px;
-        }
-    }
-    .name{
-        font-size: 32px;
-    }
-}
-
-
-@media (max-width: 350px) {
-    .business-card {
-        font-size: 20px;
-        li {
-            height: 70px;
-        }
-    }
-    .name{
-        font-size: 26px;
-    }
-}
-
-@media (max-width: 300px) {
-    .business-card {
-        font-size: 20px;
-        li {
-            height: 60px;
-        }
-    }
-    .name{
-        font-size: 20px;
-    }
-}
-
-@media (max-width: 250px) {
-    .business-card {
-        font-size: 16px;
-        li {
-            height: 50px;
-        }
-    }
-    .name{
-        font-size: 20px;
-    }
-}
