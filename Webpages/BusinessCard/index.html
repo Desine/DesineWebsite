@@ -10,6 +10,17 @@
     <script src="script.js" defer></script>
 </head>
 
+
+<script>
+    // set dark theme if it's late
+    const hours = new Date().getHours()
+    if (hours <= 3 || hours >= 21) {
+        document.documentElement.classList.remove('light')
+        document.documentElement.classList.add('dark')
+    }
+</script>
+
+
 <body>
     <header class="container">
         <div class="theme">

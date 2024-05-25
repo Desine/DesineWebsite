@@ -1,27 +1,27 @@
 // themes
+const themes = [
+    'light', 'dark',
+]
+
 const theme_toggle = document.getElementById('theme-toggle')
 theme_toggle.addEventListener('change', () => {
-    change_theme()
-    theme_toggle.classList.remove('themeChange-input')
+    const currentTheme = themes.find(theme => document.documentElement.classList.contains(theme))
+    const currentIndex = themes.indexOf(currentTheme)
+    const nextIndex = (currentIndex + 1) % themes.length
+    setTheme(themes[nextIndex])
+
     theme_toggle.nextElementSibling.classList.remove('themeChange-label')
-    void theme_toggle.parentNode.offsetWidth // Принудительная перерисовка, чтобы обновить анимацию
-    theme_toggle.classList.add('themeChange-input');
+    void theme_toggle.offsetWidth
     theme_toggle.nextElementSibling.classList.add('themeChange-label')
 })
 
-function change_theme() {
-    document.documentElement.classList.remove('light', 'dark')
-    if (theme_toggle.checked) document.documentElement.classList.add('dark')
-    else document.documentElement.classList.add('light')
-}
+function setTheme(theme) {
+    themes.forEach(current => {
+        document.documentElement.classList.remove(current)
 
-// set dark theme if it's late
-const hours = new Date().getHours()
-if (hours <= 3 || hours >= 21) {
-    theme_toggle.checked = true
-    change_theme()
+    })
+    document.documentElement.classList.add(theme)
 }
-
 
 
 
@@ -63,10 +63,9 @@ apps.forEach(app => {
         li.classList.add('arrive')
     }, (apps.indexOf(app) + 1) * 110)
 });
-
 setTimeout(() => {
     document.querySelector('.name').parentNode.classList.add('arrive')
-}, 1)
+}, 0)
 
 
 function setQrcode(img, src) {
