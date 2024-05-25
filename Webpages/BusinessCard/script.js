@@ -61,12 +61,12 @@ apps.forEach(app => {
 
     setTimeout(() => {
         li.classList.add('arrive')
-    }, (apps.indexOf(app) + 2) * 100)
+    }, (apps.indexOf(app) + 1) * 110)
 });
 
 setTimeout(() => {
     document.querySelector('.name').parentNode.classList.add('arrive')
-}, 100)
+}, 1)
 
 
 function setQrcode(img, src) {
