@@ -49,6 +49,16 @@ apps.forEach(app => {
 
     const nickname = document.createElement('p')
     nickname.innerHTML = app.nickname
+    nickname.addEventListener('click', () => {
+        const textarea = document.createElement('textarea')
+        textarea.value = app.nickname
+        document.body.appendChild(textarea)
+        textarea.select()
+        document.execCommand('copy')
+        document.body.removeChild(textarea)
+
+        showMessageModal("Скопировано: " + app.nickname)
+    })
 
     const qrcode = document.createElement('img')
     setQrcode(qrcode, app.link)
@@ -71,7 +81,7 @@ setTimeout(() => {
 function setQrcode(img, src) {
     img.alt = 'QR-code'
     img.src = `https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=${src}`
-    img.onclick = () => show_qrcode_popup(img.src)
+    img.onclick = () => showQrcodePopup(img.src)
 }
 
 setQrcode(document.querySelector('.name').nextElementSibling, window.location.href)
@@ -80,16 +90,21 @@ setQrcode(document.querySelector('.name').nextElementSibling, window.location.hr
 // qrcode modal
 const popup_qrcode = document.querySelector('.qrcode-modal')
 
+function showQrcodePopup(src) {
+    popup_qrcode.firstElementChild.src = src
+    popup_qrcode.style.display = ''
+}
+
 popup_qrcode.onclick = () => {
     popup_qrcode.style.display = 'none'
-    popup_qrcode.style.backgroundColor = 'rgba(0, 0, 0, 0)'
 }
 
-function show_qrcode_popup(src) {
-    popup_qrcode.children[0].src = src
-    popup_qrcode.style = ''
+// message modal
+const message_modal = document.querySelector('.message-modal')
+function showMessageModal(message) {
+    message_modal.textContent = message
 
-    popup_qrcode.style.backgroundColor = 'rgba(0, 0, 0, 0.95)'
+    message_modal.style.animationName = ''
+    void message_modal.offsetHeight
+    message_modal.style.animationName = 'message-modal'
 }
-
-

@@ -135,8 +135,8 @@ header {}
 
 .name {
     background: rgb(221, 255, 189);
-    border: 4px solid rgba(35, 165, 90);
-    border-radius: 10px;
+    border: clamp(3px, 1.5vw, 5px) solid rgba(35, 165, 90);
+    border-radius: clamp(5px, 1.1vw, 10px);
 
     color: rgb(9, 135, 61);
     padding: 5px 10px;
@@ -152,9 +152,49 @@ header {}
     inset: -100px;
     justify-content: center;
     align-items: center;
-    transition: 0.4s;
+    background-color: rgb(0, 0, 0, .7);
 
     img {
         width: min(400px, 100vw);
+    }
+}
+
+.message-modal{
+    --distanceY: min(10vh, 50px);
+
+    display: flex;
+    position: fixed;
+    left: 50%;
+    transform: translateX(-50%);
+    padding: 5px 13px;
+    background: rgb(221, 255, 189);
+    border-radius: 100vh;
+
+    color: rgb(9, 135, 61);
+    border: 2px solid black;
+    
+    text-wrap: nowrap;
+    font-size: clamp(13px, 7vw, 30px);
+    color: black;
+
+    top: var(--distanceY);
+    opacity: 0;
+    animation-duration: 1.5s;
+    animation-timing-function: linear;
+}
+
+@keyframes message-modal{
+    0%{
+        top: var(--distanceY);
+    }
+    20%{
+        opacity: 1;
+    }
+    80%{
+        opacity: 1;
+        top: var(--distanceY);
+    }
+    100%{
+        top: -10px;
     }
 }
