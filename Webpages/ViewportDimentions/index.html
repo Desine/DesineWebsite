@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en" class="light">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Viewport diemntions</title>
+    <link rel="icon" href="../../img/favicon.png">
+    <link rel="stylesheet" href="style.css">
+    <script src="script.js" defer></script>
+</head>
+
+
+<script>
+    // set dark theme if it's late
+    const hours = new Date().getHours()
+    if (hours <= 3 || hours >= 21) {
+        document.documentElement.classList.remove('light')
+        document.documentElement.classList.add('dark')
+    }
+</script>
+
+
+<body>
+
+
+
+</body>
+
+</html>

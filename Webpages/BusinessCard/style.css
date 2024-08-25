@@ -9,6 +9,14 @@
     --theme-change-duration: .7s
 }
 
+
+* {
+    margin: 0;
+    padding: 0;
+
+    font-family: sans-serif;
+}
+
 html.light {
     --color-bg: #fff;
     --color-text: #000;
@@ -25,12 +33,6 @@ body {
     transition: background-color var(--theme-change-duration), color var(--theme-change-duration);
 }
 
-* {
-    margin: 0;
-    padding: 0;
-
-    font-family: sans-serif;
-}
 
 .container {
     max-width: 800px;
@@ -70,7 +72,7 @@ header {}
             margin: calc(var(--height) * 0.05);
             background-color: var(--color-bg);
             content: '';
-            border-radius: 9999px;
+            border-radius: 100%;
             transition: 0.2s;
         }
     }
@@ -104,34 +106,45 @@ header {}
     width: clamp(180px, 80vw, 450px);
     font-size: clamp(20px, 8vw, 40px);
     margin: 0 auto;
-
-    li {
-        height: clamp(45px, 20vw, 100px);
+    
+    ul{
         display: flex;
-        align-items: center;
-        justify-content: space-between;
+        flex-direction: column;
+        gap: clamp(5px, 3vw, 20px);
+    
+        li {
+            height: clamp(45px, 20vw, 100px);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
 
-
-        transform: translateY(150px);
-        opacity: 0;
-
-        &.arrive {
-            transition: transform .6s, opacity .3s ease-in;
-            transform: translateY(0);
-            opacity: 1;
-        }
-        
-        &:not(:first-child) {
-            margin-top: clamp(5px, 3vw, 20px);
-        }
-
-        img {
-            user-select: none;
-            height: 100%;
+            img {
+                user-select: none;
+                height: 100%;
+            }
         }
     }
 }
 
+@keyframes fade-in{
+    from{
+        opacity: 0;
+    }
+    to{
+        opacity: 1;
+    }
+}
+@keyframes move-in{
+    from{
+        transform: translateY(150px);
+    }
+    to{
+        transform: translateY(0);
+    }
+}
+.arrive{
+    animation: move-in .6s ease forwards, fade-in .3s ease-in forwards;
+}
 
 .name {
     background: rgb(221, 255, 189);
@@ -176,6 +189,9 @@ header {}
     text-wrap: nowrap;
     font-size: clamp(13px, 7vw, 30px);
     color: black;
+
+    user-select: none;
+    pointer-events: none;   
 
     top: var(--distanceY);
     opacity: 0;
